@@ -1,34 +1,38 @@
 package com.switchly.api.Controller;
 
-import com.switchly.api.Service.OrganizationService;
+import com.switchly.api.dto.CreateOrganizationRequest;
+import com.switchly.api.model.Organization;
+import com.switchly.api.service.OrganizationService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.UUID;
+
 @RestController
-@RequestMapping("/api/vi")
+@RequestMapping("/api/v1")
 public class OrganizationController {
 
-        private final OrganizationService organizationService;
+    private final OrganizationService organizationService;
 
-        public OrganizationController(OrganizationService organizationService) {
-            this.organizationService = organizationService;
-        }
+    public OrganizationController(OrganizationService organizationService) {
+        this.organizationService = organizationService;
+    }
+
+    @PostMapping("/orgs")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Organization create(@Valid @RequestBody CreateOrganizationRequest request) {
+        return organizationService.create(request.name());
+    }
+
+    @GetMapping("/orgs")
+    public List<Organization> getAll() {
+        return organizationService.getAll();
+    }
+
+    @GetMapping("/orgs/{orgId}")
+    public Organization getById(@PathVariable UUID orgId) {
+        return organizationService.getById(orgId);
+    }
 }
-
-     @PostMapping("/orgs")
-     @ResponseStatus(HttpStatus.CREATED)
-
-     public Organization create(@Valid @RequestBody CreateOrganizationRequest request) {
-       return OrganizationService.create(request.name());
-     }
-
-     @GetMapping("/orgs")
-     publicList<Organization> getAll() {
-        return OrganizationService.getAll();
-     }
-
-     @GetMapping("/{orgId}")
-     public Organization getById(@PathVariable UUID orgId) {
-      return organizationService.getById(orgId);
-     }
-

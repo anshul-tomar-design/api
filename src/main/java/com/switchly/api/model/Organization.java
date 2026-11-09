@@ -1,11 +1,13 @@
 package com.switchly.api.model;
 
+import java.util.UUID;
+
 public class Organization {
 
     private final UUID id;
     private final String name;
 
-    public Organization(Organization organization) {
+    public Organization(UUID id, String name) {
         this.id = id;
         this.name = name;
     }

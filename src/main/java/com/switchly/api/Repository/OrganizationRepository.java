@@ -1,5 +1,7 @@
 package com.switchly.api.Repository;
 
+import com.switchly.api.model.Organization;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

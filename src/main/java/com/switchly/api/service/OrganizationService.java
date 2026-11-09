@@ -1,5 +1,8 @@
-package com.switchly.api.Service;
+package com.switchly.api.service;
 
+import com.switchly.api.Repository.OrganizationRepository;
+import com.switchly.api.exception.NotFoundException;
+import com.switchly.api.model.Organization;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,5 +30,4 @@ public class OrganizationService {
     public List<Organization> getAll() {
         return organizationRepository.findAll();
     }
-
 }

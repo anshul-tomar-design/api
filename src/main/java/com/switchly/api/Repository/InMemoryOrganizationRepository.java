@@ -1,5 +1,6 @@
 package com.switchly.api.Repository;
 
+import com.switchly.api.model.Organization;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
-public class InMemoryOrganizationRepository implements OrganizationRepository{
+public class InMemoryOrganizationRepository implements OrganizationRepository {
 
     private final Map<UUID, Organization> store = new ConcurrentHashMap<>();
 
@@ -29,5 +30,4 @@ public class InMemoryOrganizationRepository implements OrganizationRepository{
     public List<Organization> findAll() {
         return new ArrayList<>(store.values());
     }
-
 }
